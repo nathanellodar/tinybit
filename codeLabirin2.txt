@@ -1,0 +1,32 @@
+def on_forever():
+    if Tinybit.Ultrasonic_Car() > 20:
+        Tinybit.car_ctrl_speed(Tinybit.CarState.CAR_RUN, 60)
+    elif Tinybit.Ultrasonic_Car() <= 8:
+        if Tinybit.Ultrasonic_Car() <= 4 or Tinybit.Ultrasonic_Car() <= 2:
+            Tinybit.car_ctrl_speed(Tinybit.CarState.CAR_BACK, 60)
+            basic.pause(300)
+            Tinybit.car_ctrl(Tinybit.CarState.CAR_STOP)
+            basic.pause(200)
+            Tinybit.car_ctrl_speed2(Tinybit.CarState.CAR_RUN, 0, 30)
+            basic.pause(530)
+            Tinybit.car_ctrl(Tinybit.CarState.CAR_STOP)
+            basic.pause(200)
+            if Tinybit.Ultrasonic_Car() > 20:
+                Tinybit.car_ctrl_speed(Tinybit.CarState.CAR_RUN, 60)
+            else:
+                Tinybit.car_ctrl_speed2(Tinybit.CarState.CAR_RUN, 55, 0)
+                basic.pause(1100)
+        Tinybit.car_ctrl_speed(Tinybit.CarState.CAR_RUN, 0)
+        basic.pause(100)
+        Tinybit.car_ctrl_speed2(Tinybit.CarState.CAR_RUN, 30, 0)
+        basic.pause(530)
+        Tinybit.car_ctrl(Tinybit.CarState.CAR_STOP)
+        basic.pause(200)
+        if Tinybit.Ultrasonic_Car() > 20:
+            Tinybit.car_ctrl_speed(Tinybit.CarState.CAR_RUN, 60)
+        else:
+            Tinybit.car_ctrl_speed2(Tinybit.CarState.CAR_RUN, 0, 60)
+            basic.pause(1100)
+    else:
+        Tinybit.car_ctrl_speed(Tinybit.CarState.CAR_RUN, 0)
+basic.forever(on_forever)
